@@ -30,7 +30,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 }
 
-// Вказуємо компілятору Kotlin використовувати версію Java 21
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs += "-Xjsr305=strict"
