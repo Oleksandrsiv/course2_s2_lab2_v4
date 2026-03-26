@@ -43,9 +43,9 @@ class AirplaneService(
     fun updateAirplane(id: Long, model: String, capacity: Int, manufacturerId: Long, airlineId: Long): Airplane {
         val airplane = getAirplaneById(id)
         val manufacturer = manufacturerRepository.findById(manufacturerId)
-            .orElseThrow { IllegalArgumentException("Виробника не знайдено!") }
+            .orElseThrow { IllegalArgumentException("Manufacturer not found!") }
         val airline = airlineRepository.findById(airlineId)
-            .orElseThrow { IllegalArgumentException("Авіакомпанію не знайдено!") }
+            .orElseThrow { IllegalArgumentException("Airline not found!") }
 
         // update fields
         airplane.model = model

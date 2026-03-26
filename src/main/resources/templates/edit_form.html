@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редагувати літак</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; max-width: 500px; }
+        div { margin-bottom: 15px; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; }
+        input, select { width: 100%; padding: 8px; box-sizing: border-box; }
+        button { padding: 10px 15px; background-color: #2196F3; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<h2>Редагувати літак</h2>
+
+<form th:action="@{/update/{id}(id=${airplane.id})}" method="post">
+    <div>
+        <label>Модель літака:</label>
+        <input type="text" name="model" th:value="${airplane.model}" required>
+    </div>
+    <div>
+        <label>Місткість:</label>
+        <input type="number" name="capacity" th:value="${airplane.capacity}" required>
+    </div>
+    <div>
+        <label>Виробник:</label>
+        <select name="manufacturerId" required>
+            <option th:each="m : ${manufacturers}"
+                    th:value="${m.id}"
+                    th:text="${m.name}"
+                    th:selected="${m.id == airplane.manufacturer.id}"> <!-- choose current manufacturer -->
+            </option>
+        </select>
+    </div>
+    <div>
+        <label>Авіакомпанія:</label>
+        <select name="airlineId" required>
+            <option th:each="a : ${airlines}"
+                    th:value="${a.id}"
+                    th:text="${a.name}"
+                    th:selected="${a.id == airplane.airline.id}"> <!-- choose current company -->
+            </option>
+        </select>
+    </div>
+
+    <button type="submit">Оновити</button>
+    <a th:href="@{/}" style="margin-left: 10px;">Скасувати</a>
+</form>
+
+</body>
+</html>
